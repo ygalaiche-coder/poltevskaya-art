@@ -1,0 +1,47 @@
+<section id="inquire" class="section">
+  <div class="container">
+    <div class="divider"></div>
+    <div class="shop-content reveal">
+      <h2 class="section-title" style="margin-bottom: var(--space-6);">{{ section.settings.heading | default: 'Acquire a Work' }}</h2>
+      <p>{{ section.settings.text | default: 'Original paintings are available for acquisition. Each piece is a unique acrylic on canvas, signed by the artist. Commissions and custom sizes are welcome.' }}</p>
+      <a href="mailto:{{ section.settings.email | default: 'hello@poltevskaya.art' }}" class="btn">{{ section.settings.button_text | default: 'Inquire About a Painting' }}</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Inquire",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Acquire a Work"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Description",
+      "default": "<p>Original paintings are available for acquisition. Each piece is a unique acrylic on canvas, signed by the artist. Commissions and custom sizes are welcome.</p>"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email for inquiries",
+      "default": "hello@poltevskaya.art"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Inquire About a Painting"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Inquire"
+    }
+  ]
+}
+{% endschema %}

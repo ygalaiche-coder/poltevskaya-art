@@ -1,0 +1,30 @@
+<section class="section" style="margin-top: 64px;">
+  <div class="container">
+    <div class="divider"></div>
+    <h1 class="section-title reveal">Collections</h1>
+    <div class="gallery-grid reveal-stagger">
+      {%- for collection in collections -%}
+        {%- if collection.products.size > 0 -%}
+          <a href="{{ collection.url }}" class="gallery-item reveal" style="text-decoration: none;">
+            {%- if collection.image -%}
+              <img
+                src="{{ collection.image | image_url: width: 800 }}"
+                alt="{{ collection.title | escape }}"
+                loading="lazy"
+              >
+            {%- elsif collection.products.first.featured_image -%}
+              <img
+                src="{{ collection.products.first.featured_image | image_url: width: 800 }}"
+                alt="{{ collection.title | escape }}"
+                loading="lazy"
+              >
+            {%- endif -%}
+            <div class="overlay">
+              <span class="overlay-text">{{ collection.title }}</span>
+            </div>
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>

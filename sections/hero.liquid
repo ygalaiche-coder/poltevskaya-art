@@ -1,0 +1,46 @@
+{%- assign has_bg = false -%}
+{%- if section.settings.background_image != blank -%}
+  {%- assign has_bg = true -%}
+  {%- assign bg_url = section.settings.background_image | image_url: width: 2400 -%}
+{%- elsif section.settings.background_asset != blank -%}
+  {%- assign has_bg = true -%}
+  {%- assign bg_url = section.settings.background_asset | asset_url -%}
+{%- endif -%}
+
+<section class="hero {% if has_bg %}hero-bg{% endif %}"
+  {%- if has_bg %} style="background-image: url('{{ bg_url }}');"{% endif -%}>
+  {%- if has_bg -%}
+    <div class="hero-scrim"></div>
+  {%- endif -%}
+  <div class="hero-inner">
+    <h1 class="hero-title">{{ section.settings.heading | default: 'Paintings by Natalia Poltevskaya' }}</h1>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Paintings by Natalia Poltevskaya"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image (uploaded)"
+    },
+    {
+      "type": "text",
+      "id": "background_asset",
+      "label": "Or: theme asset filename (e.g. painting-06.jpg)",
+      "default": "painting-06.jpg"
+    }
+  ],
+  "presets": [
+    { "name": "Hero" }
+  ]
+}
+{% endschema %}

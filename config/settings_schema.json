@@ -1,0 +1,39 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Poltevskaya",
+    "theme_version": "1.0.0",
+    "theme_author": "Poltevskaya",
+    "theme_documentation_url": "",
+    "theme_support_url": ""
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Colors are controlled via CSS custom properties in style.css for maximum flexibility. The theme uses a monochrome black-and-white palette so the art is the only color on the page."
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Typography uses Cormorant (serif) for display/headings and Switzer (sans-serif) for body text. These are loaded via Google Fonts and Fontshare in the layout file."
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram",
+        "label": "Instagram URL",
+        "default": "https://instagram.com/poltevskaya_art"
+      }
+    ]
+  }
+]

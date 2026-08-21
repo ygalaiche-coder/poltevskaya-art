@@ -1,0 +1,533 @@
+/* ============================================
+   NATALIA POLTEVSKAYA — SHOPIFY CATALOG THEME
+   Editorial minimalism, artist portfolio catalog aesthetic
+   Pure white / pure black, Syne + Syne Mono
+   ============================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Syne Mono', 'Courier New', monospace;
+  font-size: 18px;
+  line-height: 1.5;
+  color: #000;
+  background: #FFF;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================
+   HEADER / NAV
+   ============================================ */
+.site-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 48px;
+  background: transparent;
+}
+
+.site-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.site-nav {
+  display: flex;
+  gap: 32px;
+}
+
+.nav-link {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.nav-link.active,
+.nav-link:hover {
+  border-bottom-color: #000;
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero {
+  min-height: 100vh;
+  padding: 200px 48px 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid #000;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.55) 100%);
+  z-index: 1;
+}
+
+.hero-inner {
+  max-width: 1200px;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: clamp(48px, 8vw, 120px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #000;
+}
+
+.hero-bg .hero-title {
+  color: #FFF;
+}
+
+/* When header sits over hero-bg: switch to white text */
+body:has(.hero-bg) .site-header {
+  color: #FFF;
+}
+body:has(.hero-bg) .site-header .site-title,
+body:has(.hero-bg) .site-header .nav-link {
+  color: #FFF;
+}
+body:has(.hero-bg) .site-header .nav-link.active,
+body:has(.hero-bg) .site-header .nav-link:hover {
+  border-bottom-color: #FFF;
+}
+
+/* ============================================
+   ARTWORKS LIST
+   ============================================ */
+.artworks {
+  width: 100%;
+}
+
+.artwork {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  align-items: center;
+  gap: 80px;
+  padding: 100px 48px;
+  border-bottom: 1px solid #000;
+  min-height: 90vh;
+}
+
+.artwork:last-child {
+  border-bottom: 1px solid #000;
+}
+
+.artwork-meta {
+  align-self: start;
+  padding-top: 8px;
+}
+
+.meta-year {
+  font-family: 'Syne Mono', monospace;
+  font-size: 18px;
+  margin-bottom: 24px;
+}
+
+.meta-title {
+  font-family: 'Syne Mono', monospace;
+  font-size: 18px;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.meta-dims {
+  font-family: 'Syne Mono', monospace;
+  font-size: 18px;
+  margin-bottom: 24px;
+}
+
+.meta-link {
+  display: inline-block;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #000;
+  transition: opacity 0.2s;
+}
+
+.meta-link:hover {
+  opacity: 0.6;
+}
+
+.meta-sold {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 4px 10px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  background: #000;
+  color: #FFF;
+}
+
+.artwork-image {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.artwork-image img {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  width: auto;
+  height: auto;
+  transition: opacity 0.3s;
+}
+
+.artwork-image a:hover img {
+  opacity: 0.85;
+}
+
+/* ============================================
+   ABOUT PAGE
+   ============================================ */
+.about-page {
+  min-height: 100vh;
+  padding: 200px 48px 120px;
+  border-bottom: 1px solid #000;
+}
+
+.about-inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: clamp(48px, 8vw, 96px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  margin-bottom: 80px;
+}
+
+.about-body {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 640px;
+}
+
+.about-body p {
+  font-family: 'Syne Mono', monospace;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.about-body a {
+  border-bottom: 1px solid #000;
+  transition: opacity 0.2s;
+}
+
+.about-body a:hover {
+  opacity: 0.6;
+}
+
+/* ============================================
+   PRODUCT PAGE
+   ============================================ */
+.product-page {
+  padding: 160px 48px 100px;
+}
+
+.product-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 80px;
+}
+
+.product-gallery img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 24px;
+}
+
+.product-info {
+  position: sticky;
+  top: 120px;
+  align-self: start;
+}
+
+.product-year {
+  font-family: 'Syne Mono', monospace;
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.product-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+
+.product-meta-item {
+  font-family: 'Syne Mono', monospace;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.product-price {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  margin: 32px 0 24px;
+}
+
+.product-cta {
+  display: inline-block;
+  padding: 16px 32px;
+  background: #000;
+  color: #FFF;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: background 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.product-cta:hover {
+  background: #333;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.site-footer {
+  border-top: 1px solid #000;
+  padding: 80px 48px;
+  text-align: center;
+}
+
+.footer-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.footer-line {
+  font-family: 'Syne Mono', monospace;
+  font-size: 18px;
+}
+
+.footer-line a {
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.footer-line a:hover {
+  border-bottom-color: #000;
+}
+
+.footer-social .sep {
+  margin: 0 12px;
+  opacity: 0.4;
+}
+
+.footer-copy {
+  font-family: 'Syne Mono', monospace;
+  font-size: 14px;
+  margin-top: 20px;
+  opacity: 0.6;
+}
+
+/* ============================================
+   FLOATING SOCIAL BUTTONS
+   ============================================ */
+.floating-btn {
+  position: fixed;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFF;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  z-index: 900;
+  transition: transform 0.2s;
+}
+
+.floating-btn:hover {
+  transform: scale(1.08);
+}
+
+.floating-whatsapp {
+  background: #25D366;
+  bottom: 96px;
+}
+
+.floating-telegram {
+  background: #2AABEE;
+  bottom: 32px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 900px) {
+  .site-header {
+    padding: 20px 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .site-title,
+  .nav-link {
+    font-size: 13px;
+  }
+
+  .site-nav {
+    gap: 24px;
+  }
+
+  .hero {
+    padding: 180px 24px 60px;
+  }
+
+  .hero-title {
+    font-size: clamp(36px, 12vw, 72px);
+  }
+
+  .artwork {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 60px 24px;
+    min-height: auto;
+  }
+
+  .meta-year,
+  .meta-title,
+  .meta-dims {
+    font-size: 15px;
+  }
+
+  .artwork-image img {
+    max-height: 70vh;
+  }
+
+  .about-page,
+  .product-page {
+    padding: 160px 24px 80px;
+  }
+
+  .about-title {
+    font-size: clamp(36px, 12vw, 64px);
+    margin-bottom: 48px;
+  }
+
+  .about-body p {
+    font-size: 15px;
+  }
+
+  .product-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .product-info {
+    position: static;
+  }
+
+  .site-footer {
+    padding: 60px 24px;
+  }
+
+  .footer-line {
+    font-size: 15px;
+  }
+
+  .footer-social {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .footer-social .sep {
+    display: none;
+  }
+
+  .floating-btn {
+    width: 44px;
+    height: 44px;
+    right: 16px;
+  }
+
+  .floating-telegram {
+    bottom: 16px;
+  }
+
+  .floating-whatsapp {
+    bottom: 72px;
+  }
+}

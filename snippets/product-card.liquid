@@ -1,0 +1,24 @@
+{%- comment -%}
+  Renders a product card in the gallery grid.
+  Usage: {% render 'product-card', product: product %}
+{%- endcomment -%}
+
+<div class="gallery-item reveal" data-href="{{ product.url }}">
+  {%- if product.featured_image -%}
+    <img
+      src="{{ product.featured_image | image_url: width: 800 }}"
+      alt="{{ product.featured_image.alt | default: product.title | escape }}"
+      loading="lazy"
+      width="{{ product.featured_image.width }}"
+      height="{{ product.featured_image.height }}"
+    >
+  {%- endif -%}
+  <div class="overlay">
+    <span class="overlay-text">
+      {{ product.title }}
+      {%- if product.metafields.custom.dimensions_cm != blank -%}
+        <br><span class="overlay-size">{{ product.metafields.custom.dimensions_cm }} · {{ product.metafields.custom.dimensions_in }}</span>
+      {%- endif -%}
+    </span>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<section class="product-page">
+  <div class="product-inner">
+
+    <!-- Gallery -->
+    <div class="product-gallery">
+      {%- for image in product.images -%}
+        <img
+          src="{{ image | image_url: width: 1600 }}"
+          alt="{{ image.alt | default: product.title | escape }}"
+          loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+          width="{{ image.width }}"
+          height="{{ image.height }}"
+        >
+      {%- endfor -%}
+    </div>
+
+    <!-- Info -->
+    <div class="product-info">
+      {%- assign year = product.metafields.custom.year | default: '2026' -%}
+      {%- assign medium = product.metafields.custom.medium | default: 'Acrylic on Canvas' -%}
+      {%- assign dims = product.metafields.custom.dimensions_cm | default: product.metafields.custom.dimensions -%}
+
+      <p class="product-year">{{ year }}</p>
+      <h1 class="product-title">{{ product.title }}</h1>
+
+      <p class="product-meta-item">{{ medium }}</p>
+      {%- if dims != blank -%}
+        <p class="product-meta-item">{{ dims }}</p>
+      {%- endif -%}
+      <p class="product-meta-item">Original — signed, with certificate of authenticity</p>
+
+      {%- if product.available -%}
+        <p class="product-price">{{ product.price | money }}</p>
+        <form method="post" action="/cart/add">
+          <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+          <button type="submit" class="product-cta">Acquire</button>
+        </form>
+      {%- else -%}
+        <p class="meta-sold" style="margin-top:24px;">SOLD</p>
+      {%- endif -%}
+
+      {%- if product.description != blank -%}
+        <div class="product-description" style="margin-top:48px; font-family:'Syne Mono',monospace; font-size:16px; line-height:1.6;">
+          {{ product.description }}
+        </div>
+      {%- endif -%}
+    </div>
+
+  </div>
+</section>

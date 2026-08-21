@@ -1,0 +1,51 @@
+<section class="section" style="margin-top: 64px;">
+  <div class="container">
+    <div class="divider"></div>
+    <h1 class="section-title">Cart</h1>
+
+    {%- if cart.item_count > 0 -%}
+      <div class="cart-items">
+        {%- for item in cart.items -%}
+          <div class="cart-item">
+            <div class="cart-item-image">
+              {%- if item.image -%}
+                <img src="{{ item.image | image_url: width: 200 }}" alt="{{ item.title | escape }}" width="100">
+              {%- endif -%}
+            </div>
+            <div class="cart-item-details">
+              <h3 class="cart-item-title">
+                <a href="{{ item.url }}">{{ item.title }}</a>
+              </h3>
+              <p class="cart-item-price">{{ item.price | money }}</p>
+            </div>
+            <div class="cart-item-actions">
+              <a href="/cart/change?id={{ item.key }}&quantity=0" class="cart-item-remove" aria-label="Remove {{ item.title }}">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>Total</span>
+          <span>{{ cart.total_price | money }}</span>
+        </div>
+        <form action="/cart" method="post">
+          <button type="submit" name="checkout" class="btn cart-checkout-btn">
+            Proceed to Checkout
+          </button>
+        </form>
+        <a href="/" class="back-link">&larr; Continue Shopping</a>
+      </div>
+    {%- else -%}
+      <div class="cart-empty" style="text-align: center; padding: var(--space-16) 0;">
+        <p style="color: var(--color-text-muted); margin-bottom: var(--space-8);">Your cart is empty.</p>
+        <a href="/" class="btn-outline btn">Browse Works</a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
