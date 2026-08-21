@@ -8,6 +8,34 @@
     {%- assign year = product.metafields.custom.year | default: '2026' -%}
     {%- assign medium = product.metafields.custom.medium | default: 'Acrylic on Canvas' -%}
     {%- assign dims = product.metafields.custom.dimensions_cm | default: product.metafields.custom.dimensions -%}
+
+    {%- comment -%}
+      Fallback dimensions by product title, in case the metafield is not yet filled in the Shopify admin.
+      Update these values here if the actual painting sizes differ.
+    {%- endcomment -%}
+    {%- if dims == blank -%}
+      {%- assign t = product.title | downcase -%}
+      {%- case t -%}
+        {%- when '3 gooses' -%}{%- assign dims = '100 × 120 cm' -%}
+        {%- when 'blue lover' -%}{%- assign dims = '80 × 120 cm' -%}
+        {%- when 'eternity love' -%}{%- assign dims = '120 × 120 cm' -%}
+        {%- when 'life choice' -%}{%- assign dims = '120 × 120 cm' -%}
+        {%- when 'naked silence' -%}{%- assign dims = '120 × 120 cm' -%}
+        {%- when 'seven men' -%}{%- assign dims = '120 × 80 cm' -%}
+        {%- when 'st. tropez sunset' -%}{%- assign dims = '120 × 120 cm' -%}
+        {%- when 'st tropez sunset' -%}{%- assign dims = '120 × 120 cm' -%}
+        {%- when 'the architecture of desire' -%}{%- assign dims = '120 × 120 cm' -%}
+        {%- when 'the curled' -%}{%- assign dims = '50 × 70 cm' -%}
+        {%- when 'the landlord' -%}{%- assign dims = '150 × 100 cm' -%}
+        {%- when 'the leopard' -%}{%- assign dims = '100 × 100 cm' -%}
+        {%- when 'the masked' -%}{%- assign dims = '50 × 70 cm' -%}
+        {%- when 'the privilege of being alone' -%}{%- assign dims = '100 × 120 cm' -%}
+        {%- when 'the two blue' -%}{%- assign dims = '100 × 100 cm' -%}
+        {%- when 'the western' -%}{%- assign dims = '120 × 80 cm' -%}
+        {%- when 'world conspiracy' -%}{%- assign dims = '100 × 100 cm' -%}
+      {%- endcase -%}
+    {%- endif -%}
+
     <section class="artwork">
       <div class="artwork-meta">
         <p class="meta-year">{{ year }}</p>
