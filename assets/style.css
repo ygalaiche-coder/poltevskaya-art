@@ -356,6 +356,13 @@ body:has(.hero-bg) .site-header .nav-link:hover {
   background: #333;
 }
 
+.product-cta-note {
+  margin-top: 12px;
+  font-family: 'Syne Mono', monospace;
+  font-size: 13px;
+  opacity: 0.6;
+}
+
 /* ============================================
    FOOTER
    ============================================ */

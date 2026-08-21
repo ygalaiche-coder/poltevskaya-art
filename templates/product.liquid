@@ -31,10 +31,10 @@
 
       {%- if product.available -%}
         <p class="product-price">{{ product.price | money }}</p>
-        <form method="post" action="/cart/add">
-          <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-          <button type="submit" class="product-cta">Acquire</button>
-        </form>
+        {%- capture email_subject -%}Inquiry — {{ product.title }}{%- endcapture -%}
+        {%- capture email_body -%}Hello Natalia,%0D%0A%0D%0AI am interested in acquiring "{{ product.title }}" ({{ product.metafields.custom.dimensions_cm | default: product.metafields.custom.dimensions }}, {{ product.price | money }}).%0D%0A%0D%0ACould you please share availability, payment options and shipping details?%0D%0A%0D%0AThank you.{%- endcapture -%}
+        <a href="mailto:poltevskaya.art@gmail.com?subject={{ email_subject | url_encode }}&body={{ email_body }}" class="product-cta">Inquire to Acquire</a>
+        <p class="product-cta-note">Opens your email — writes to poltevskaya.art@gmail.com</p>
       {%- else -%}
         <p class="meta-sold" style="margin-top:24px;">SOLD</p>
       {%- endif -%}
