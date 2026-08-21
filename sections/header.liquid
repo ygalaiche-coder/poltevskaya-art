@@ -2,14 +2,7 @@
   <a href="{{ routes.root_url }}" class="site-title">{{ shop.name | upcase }} ARTIST</a>
   <nav class="site-nav">
     <a href="{{ routes.root_url }}" class="nav-link {% if template == 'index' %}active{% endif %}">Artworks</a>
-    {%- for link in linklists.main-menu.links -%}
-      {%- if link.title contains 'About' or link.url contains 'about' -%}
-        <a href="{{ link.url }}" class="nav-link {% if link.active %}active{% endif %}">{{ link.title }}</a>
-      {%- endif -%}
-    {%- endfor -%}
-    {%- unless linklists.main-menu.links.size > 0 -%}
-      <a href="{{ pages.about.url | default: '/pages/about' }}" class="nav-link">About</a>
-    {%- endunless -%}
+    <a href="/pages/about" class="nav-link {% if template contains 'page' and page.handle == 'about' %}active{% endif %}">About</a>
   </nav>
 </header>
 
