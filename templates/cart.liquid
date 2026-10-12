@@ -16,7 +16,9 @@
               <h3 class="cart-item-title">
                 <a href="{{ item.url }}">{{ item.title }}</a>
               </h3>
-              <p class="cart-item-price">{{ item.price | money }}</p>
+              {%- unless settings.hide_prices -%}
+                <p class="cart-item-price">{{ item.price | money }}</p>
+              {%- endunless -%}
             </div>
             <div class="cart-item-actions">
               <a href="/cart/change?id={{ item.key }}&quantity=0" class="cart-item-remove" aria-label="Remove {{ item.title }}">
@@ -30,15 +32,21 @@
       </div>
 
       <div class="cart-footer">
-        <div class="cart-total">
-          <span>Total</span>
-          <span>{{ cart.total_price | money }}</span>
-        </div>
-        <form action="/cart" method="post">
-          <button type="submit" name="checkout" class="btn cart-checkout-btn">
-            Proceed to Checkout
-          </button>
-        </form>
+        {%- if settings.hide_prices -%}
+          <p class="cart-price-contact">{{ 'cart.general.price_contact' | t }}</p>
+          <a href="mailto:poltevskaya.art@gmail.com?subject={{ 'Price inquiry' | url_encode }}" class="btn cart-checkout-btn">{{ 'products.product.price_contact' | t }}</a>
+          <a href="https://wa.me/351913260771" target="_blank" rel="noopener noreferrer" class="back-link">WhatsApp</a>
+        {%- else -%}
+          <div class="cart-total">
+            <span>Total</span>
+            <span>{{ cart.total_price | money }}</span>
+          </div>
+          <form action="/cart" method="post">
+            <button type="submit" name="checkout" class="btn cart-checkout-btn">
+              Proceed to Checkout
+            </button>
+          </form>
+        {%- endif -%}
         <a href="/" class="back-link">&larr; Continue Shopping</a>
       </div>
     {%- else -%}
