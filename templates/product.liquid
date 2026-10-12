@@ -66,13 +66,9 @@
         endif
       -%}
       {%- if is_available -%}
-        {%- if settings.hide_prices -%}
-          <p class="product-price product-price--contact">
-            <a href="https://wa.me/351913260771?text={{ 'Hello Natalia, I would like to know the price of "' | append: product.title | append: '".' | url_encode }}" target="_blank" rel="noopener noreferrer">{{ 'products.product.price_contact' | t }}</a>
-          </p>
-        {%- else -%}
+        {%- unless settings.hide_prices -%}
           <p class="product-price">{{ product.price | money }}</p>
-        {%- endif -%}
+        {%- endunless -%}
         {%- capture email_subject -%}Inquiry — {{ product.title }}{%- endcapture -%}
         {%- capture email_body -%}Hello Natalia,%0D%0A%0D%0AI am interested in acquiring "{{ product.title }}" ({{ product.metafields.custom.dimensions_cm | default: product.metafields.custom.dimensions }}{% unless settings.hide_prices %}, {{ product.price | money }}{% endunless %}).%0D%0A%0D%0ACould you please share {% if settings.hide_prices %}the price, {% endif %}availability, payment options and shipping details?%0D%0A%0D%0AThank you.{%- endcapture -%}
         <a href="mailto:poltevskaya.art@gmail.com?subject={{ email_subject | url_encode }}&body={{ email_body }}" class="product-cta">Inquire to Acquire</a>
