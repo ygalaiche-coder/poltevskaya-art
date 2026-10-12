@@ -3,7 +3,7 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "heading": "Paintings by Natalia Poltevskaya",
+        "heading": "Natalia Poltevskaya",
         "background_asset": "hero-natalia-sirena.jpg",
         "background_position": "center 44%",
         "background_alt": "Natalia Poltevskaya with Sirena"
