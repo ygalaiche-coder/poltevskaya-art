@@ -36,7 +36,16 @@
                     {%- endif -%}
                   </span>
                 {%- endif -%}
-                {%- unless product.available -%}
+                {%- liquid
+                  assign is_available = product.available
+                  if settings.hide_prices
+                    assign is_available = false
+                    if product.tags contains 'inquire-available'
+                      assign is_available = true
+                    endif
+                  endif
+                -%}
+                {%- unless is_available -%}
                   <span class="overlay-sold">Sold</span>
                 {%- endunless -%}
               </div>
