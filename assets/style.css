@@ -469,8 +469,12 @@ body:has(.hero-bg) .site-header .nav-link:hover {
     padding: 180px 24px 60px;
   }
 
+  .hero.hero-bg {
+    padding-bottom: 110px;
+  }
+
   .hero-title {
-    font-size: clamp(36px, 12vw, 72px);
+    font-size: clamp(32px, 10vw, 72px);
   }
 
   .artwork {
