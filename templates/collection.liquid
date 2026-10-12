@@ -14,7 +14,16 @@
 
     {%- if collection.products.size > 0 -%}
       <div class="gallery-grid reveal-stagger">
-        {%- for product in collection.products -%}
+        {%- assign product_list = collection.products -%}
+        {%- if collection.handle == 'all' -%}
+          {%- comment -%} Curated order: 'frontpage' (manual sort) first, then remaining products {%- endcomment -%}
+          {%- assign product_list = collections.frontpage.products | concat: collection.products -%}
+        {%- endif -%}
+        {%- assign seen_ids = ',' -%}
+        {%- for product in product_list -%}
+          {%- assign pid_key = ',' | append: product.id | append: ',' -%}
+          {%- if seen_ids contains pid_key -%}{%- continue -%}{%- endif -%}
+          {%- assign seen_ids = seen_ids | append: product.id | append: ',' -%}
           <a href="{{ product.url }}" class="gallery-item reveal" style="text-decoration: none;" aria-label="{{ product.title }}">
             {%- if product.featured_image -%}
               <img

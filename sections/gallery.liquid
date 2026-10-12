@@ -1,10 +1,20 @@
 {%- assign collection = collections[section.settings.collection] -%}
 {%- if collection == blank -%}
+  {%- comment -%} Curated order: 'frontpage' (Home page, manual sort) first, then any other products not yet in it {%- endcomment -%}
   {%- assign collection = collections.all -%}
+  {%- assign product_list = collections.frontpage.products | concat: collections.all.products -%}
+{%- else -%}
+  {%- assign product_list = collection.products -%}
 {%- endif -%}
+{%- assign seen_ids = ',' -%}
+{%- assign shown = 0 -%}
 
 <main class="artworks">
-  {%- for product in collection.products limit: section.settings.limit -%}
+  {%- for product in product_list -%}
+    {%- assign pid_key = ',' | append: product.id | append: ',' -%}
+    {%- if seen_ids contains pid_key or shown >= section.settings.limit -%}{%- continue -%}{%- endif -%}
+    {%- assign seen_ids = seen_ids | append: product.id | append: ',' -%}
+    {%- assign shown = shown | plus: 1 -%}
     {%- assign year = product.metafields.custom.year | default: '2026' -%}
     {%- assign medium = product.metafields.custom.medium | default: 'Acrylic on Canvas' -%}
     {%- assign dims = product.metafields.custom.dimensions_cm | default: product.metafields.custom.dimensions -%}
