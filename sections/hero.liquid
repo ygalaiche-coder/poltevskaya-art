@@ -8,7 +8,7 @@
 {%- endif -%}
 
 <section class="hero {% if has_bg %}hero-bg{% endif %}"
-  {%- if has_bg %} style="background-image: url('{{ bg_url }}');"{% endif -%}>
+  {%- if has_bg %} style="background-image: url('{{ bg_url }}');{% if section.settings.background_position != blank %} background-position: {{ section.settings.background_position }};{% endif %}"{% if section.settings.background_alt != blank %} role="img" aria-label="{{ section.settings.background_alt | escape }}"{% endif %}{% endif -%}>
   {%- if has_bg -%}
     <div class="hero-scrim"></div>
   {%- endif -%}
@@ -37,6 +37,16 @@
       "id": "background_asset",
       "label": "Or: theme asset filename (e.g. painting-06.jpg)",
       "default": "painting-06.jpg"
+    },
+    {
+      "type": "text",
+      "id": "background_position",
+      "label": "Background position (CSS, e.g. center 44%)"
+    },
+    {
+      "type": "text",
+      "id": "background_alt",
+      "label": "Background image description (alt text)"
     }
   ],
   "presets": [
