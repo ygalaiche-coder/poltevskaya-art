@@ -50,7 +50,16 @@
           <p class="meta-dims">{{ dims }}</p>
         {%- endif -%}
         <a href="{{ product.url }}" class="meta-link">View &amp; Inquire →</a>
-        {%- unless product.available -%}
+        {%- liquid
+          assign is_available = product.available
+          if settings.hide_prices
+            assign is_available = false
+            if product.tags contains 'inquire-available'
+              assign is_available = true
+            endif
+          endif
+        -%}
+        {%- unless is_available -%}
           <p class="meta-sold">SOLD</p>
         {%- endunless -%}
       </div>

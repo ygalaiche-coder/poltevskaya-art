@@ -22,13 +22,15 @@
         "@type": "Product",
         "name": {{ product.title | json }},
         "image": {{ product.featured_image | image_url: width: 1200 | json }},
-        "description": {{ product.description | strip_html | json }},
+        "description": {{ product.description | strip_html | json }}
+        {%- unless settings.hide_prices -%},
         "offers": {
           "@type": "Offer",
           "price": {{ product.price | money_without_currency | json }},
           "priceCurrency": {{ cart.currency.iso_code | json }},
           "availability": "{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}"
         }
+        {%- endunless %}
       }
     </script>
   {%- endif -%}

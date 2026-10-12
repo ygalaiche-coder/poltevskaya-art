@@ -337,6 +337,12 @@ body:has(.hero-bg) .site-header .nav-link:hover {
   margin: 32px 0 24px;
 }
 
+.product-price--contact a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
 .product-cta {
   display: inline-block;
   padding: 16px 32px;

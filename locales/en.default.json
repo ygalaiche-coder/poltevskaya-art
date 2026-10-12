@@ -9,7 +9,9 @@
     "product": {
       "add_to_cart": "Add to Cart",
       "inquire": "Inquire About This Work",
-      "price_on_request": "Price on request"
+      "price_on_request": "Price on request",
+      "price_contact": "Contact us for the price",
+      "price_contact_note": "Write to us by email or WhatsApp to learn the price."
     }
   },
   "cart": {
@@ -18,7 +20,8 @@
       "empty": "Your cart is empty.",
       "total": "Total",
       "checkout": "Proceed to Checkout",
-      "continue_shopping": "Continue Shopping"
+      "continue_shopping": "Continue Shopping",
+      "price_contact": "Contact us to learn the price and complete your acquisition."
     }
   }
 }

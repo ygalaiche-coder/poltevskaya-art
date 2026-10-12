@@ -1,1 +1,22 @@
-[]
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Poltevskaya",
+    "theme_version": "1.0.0",
+    "theme_author": "Poltevskaya",
+    "theme_documentation_url": "https://poltevskaya.art",
+    "theme_support_url": "https://poltevskaya.art"
+  },
+  {
+    "name": "Pricing",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "hide_prices",
+        "label": "Hide prices on the storefront",
+        "info": "When enabled, prices are hidden and visitors are invited to contact you for the price. Prices stay stored in Shopify.",
+        "default": true
+      }
+    ]
+  }
+]
