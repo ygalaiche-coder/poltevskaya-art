@@ -14,12 +14,14 @@
 
     {%- if collection.products.size > 0 -%}
       <div class="gallery-grid reveal-stagger">
-        {%- assign product_list = collection.products -%}
-        {%- if collection.handle == 'all' -%}
-          {%- comment -%} Curated order: 'frontpage' (manual sort) first, then remaining products {%- endcomment -%}
-          {%- assign product_list = collections.frontpage.products | concat: collection.products -%}
-        {%- endif -%}
+        {%- comment -%} /collections/all: curated 'frontpage' (manual sort) first, then remaining products {%- endcomment -%}
         {%- assign seen_ids = ',' -%}
+        {%- for pass in (1..2) -%}
+        {%- if pass == 1 -%}
+          {%- if collection.handle == 'all' -%}{%- assign product_list = collections.frontpage.products -%}{%- else -%}{%- continue -%}{%- endif -%}
+        {%- else -%}
+          {%- assign product_list = collection.products -%}
+        {%- endif -%}
         {%- for product in product_list -%}
           {%- assign pid_key = ',' | append: product.id | append: ',' -%}
           {%- if seen_ids contains pid_key -%}{%- continue -%}{%- endif -%}
@@ -60,6 +62,7 @@
               </div>
             </div>
           </a>
+        {%- endfor -%}
         {%- endfor -%}
       </div>
 

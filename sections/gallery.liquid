@@ -2,14 +2,18 @@
 {%- if collection == blank -%}
   {%- comment -%} Curated order: 'frontpage' (Home page, manual sort) first, then any other products not yet in it {%- endcomment -%}
   {%- assign collection = collections.all -%}
-  {%- assign product_list = collections.frontpage.products | concat: collections.all.products -%}
-{%- else -%}
-  {%- assign product_list = collection.products -%}
+  {%- assign curated = true -%}
 {%- endif -%}
 {%- assign seen_ids = ',' -%}
 {%- assign shown = 0 -%}
 
 <main class="artworks">
+  {%- for pass in (1..2) -%}
+  {%- if pass == 1 -%}
+    {%- if curated -%}{%- assign product_list = collections.frontpage.products -%}{%- else -%}{%- continue -%}{%- endif -%}
+  {%- else -%}
+    {%- assign product_list = collection.products -%}
+  {%- endif -%}
   {%- for product in product_list -%}
     {%- assign pid_key = ',' | append: product.id | append: ',' -%}
     {%- if seen_ids contains pid_key or shown >= section.settings.limit -%}{%- continue -%}{%- endif -%}
@@ -87,6 +91,7 @@
         </a>
       </div>
     </section>
+  {%- endfor -%}
   {%- endfor -%}
 </main>
 
