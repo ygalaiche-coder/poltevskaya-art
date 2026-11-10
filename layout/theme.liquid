@@ -23,7 +23,7 @@
         "name": {{ product.title | json }},
         "image": {{ product.featured_image | image_url: width: 1200 | json }},
         "description": {{ product.description | strip_html | json }}
-        {%- unless settings.hide_prices -%},
+        {%- unless settings.hide_prices or product.price == 0 -%},
         "offers": {
           "@type": "Offer",
           "price": {{ product.price | money_without_currency | json }},

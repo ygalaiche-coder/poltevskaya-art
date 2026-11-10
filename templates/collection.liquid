@@ -49,11 +49,12 @@
                 {%- endif -%}
                 {%- liquid
                   assign is_available = product.available
+                  # Works tagged 'inquire-available' are for sale (stock kept at 0 to block checkout)
                   if settings.hide_prices
                     assign is_available = false
-                    if product.tags contains 'inquire-available'
-                      assign is_available = true
-                    endif
+                  endif
+                  if product.tags contains 'inquire-available'
+                    assign is_available = true
                   endif
                 -%}
                 {%- unless is_available -%}
